@@ -23,13 +23,13 @@
 
    - 强制等待：`time.sleep(3)`，用于页数切换过快，网站页数未更新
    - 显式等待：`WebDriverWait(driver, 10).until(EC.visibility_of_all_elements_located((By.CLASS_NAME, "ciga_list_list_item_img")))`，用于等待所有图片加载完全才切换下一页图片
-   - 隐式等待：`driver.implicitly_wait(10) ` ，打开全部网页加载数据需要缓冲时间。
+   - 隐式等待：`driver.implicitly_wait(10) ` ，打开全部网页加载数据需要缓冲时间
 
 2. 解决代码执行完成，自动关闭浏览器窗口
 
    ​	`options.add_experimental_option("detach", True)`
 
-3. 自定义浏览器，可用于第三方基于chromium浏览器。自定义数据目录，可缓存登录信息
+3. 自定义浏览器，可用于第三方基于chromium浏览器。自定义数据目录，可缓存登录信息。
 
    `options.binary_location = r"D:\DownSoft\Chrome\App\chrome.exe"`
 
@@ -38,30 +38,30 @@
 4. selenium_v4之后的元素定位方式
 
    ```python
-   driver.get('https://www.baidu.com/')
-   # 浏览器输入地址
-   driver.find_element(By.XPATH, '//*[@id="kw"]') 
    # 根据xpath选择元素(万金油)
-   driver.find_element(By.CSS_SELECTOR, '#kw') 
+   driver.find_element(By.XPATH, '//*[@id="kw"]') 
    # 根据css选择器选择元素
-   driver.find_element(By.NAME, 'wd') 
+   driver.find_element(By.CSS_SELECTOR, '#kw') 
    # 根据name属性值选择元素
-   driver.find_element(By.CLASS_NAME, 's_ipt') 
+   driver.find_element(By.NAME, 'wd') 
    # 根据类名选择元素
-   driver.find_element(By.LINK_TEXT, 'hao123') 
+   driver.find_element(By.CLASS_NAME, 's_ipt') 
    # 根据链接文本选择元素
-   driver.find_element(By.PARTIAL_LINK_TEXT, 'hao') 
+   driver.find_element(By.LINK_TEXT, 'hao123') 
    # 根据包含文本选择
-   driver.find_element(By.TAG_NAME, 'title') 
+   driver.find_element(By.PARTIAL_LINK_TEXT, 'hao') 
    # 根据标签名选择
    # 目标元素在当前html中是唯一标签或众多标签第一个时候使用
-   driver.find_element(By.ID, 'su') 
+   driver.find_element(By.TAG_NAME, 'title') 
    # 根据id选择
+   driver.find_element(By.ID, 'su') 
    ```
-
+   
 5. chromedriver启动配置
 
    ```python
+   options = Options()  # 新版加启动配置
+   options.binary_location = r"D:\DownSoft\Chrome\App\chrome.exe"  # 指定chrome程序路径
    # 指定下载路径，无头模式不可用
    download_path = r""
    prefs = {"download.default_directory": download_path}
@@ -79,7 +79,7 @@
    options.add_argument('--disk-cache-dir={临时文件目录}')  # 指定临时文件目录
    options.add_argument("--ignore-certificate-errors")  # 忽略不信任证书
    options.add_argument('--ignore-ssl-errors')  # 处理SSL证书错误问题
-   # options.add_argument('--disable-setuid-sandbox')  # 禁用沙盒
+   options.add_argument('--disable-setuid-sandbox')  # 禁用沙盒
    options.add_argument('--disable-notifications')  # 禁用通知警告
    options.add_argument("--disable-application-cache")  # 禁用缓存
    options.add_argument('--disable-dev-shm-usage')  # 使用硬盘来存储获取的内容，而不是使用内存.大量渲染时候写入/tmp而非/dev/shm
@@ -109,6 +109,6 @@
    # driver = webdriver.Chrome(chrome_options=options, executable_path=executable_path)
    options.add_experimental_option("detach", True) # 浏览器不自动关闭
    ```
-
+   
    
 

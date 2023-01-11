@@ -18,7 +18,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 options = Options()  # 新版加启动配置
 options.binary_location = r"D:\DownSoft\Chrome\App\chrome.exe"  # 指定chrome程序路径
-options.add_argument('–headless')  # 无头浏览模式
+# options.add_argument('–headless')  # 无头浏览模式
 options.add_argument('--no-sandbox')  # 在 root 权限下运行。指定第三方浏览器时地址栏只显示data，需要加此行
 options.add_argument("--no-referrers")  # 不发送 Http-Referer 头
 options.add_argument("--start-maximized")  # 启动时窗口最大化
